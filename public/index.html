@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Balls</title>
+</head>
+
+<body>
+    <button onclick="writeUserData()">Write message to console</button>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2lkea42zLbALgFkuHOmTaq9i7ajoxAZg",
+            authDomain: "play-domino.firebaseapp.com",
+            databaseURL: "https://play-domino.firebaseio.com",
+            projectId: "play-domino",
+            storageBucket: "play-domino.appspot.com",
+            messagingSenderId: "129931567821",
+            appId: "1:129931567821:web:67305ebde0674b136f7f84",
+            measurementId: "G-KHFESJL56T"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        var database = firebase.database();
+
+        function writeUserData() {
+            firebase.database().ref('users/a').set({
+                username: 'a',
+                email: 'b',
+                time: Date.now()
+            });
+        }
+
+        var starCountRef = firebase.database().ref('users/a');
+        starCountRef.on('value', function (snapshot) {
+            console.log(snapshot.val());
+        });
+    </script>
+</body>
+
+</html>
